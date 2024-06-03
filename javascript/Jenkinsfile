@@ -1,29 +1,24 @@
 node {
     try {
-         stage("checkout")
-         {
-           checkout scm
-         }
-        
-        dir('.\\javascript'){
-        stage('Install Dependencies') {
-            // Install npm dependencies
-            bat 'npm install'
-        }
-        
-        stage('Run Node Script') {
-            
-                    
-                  bat   'node index.js AyushGhagre direct_member FrontEnd'
-                
+        dir('C:\\') {
+            stage("Checkout") {
+                checkout scm
             }
-            
+
+            dir('.\\javascript') {
+                stage('Install Dependencies') {
+                    // Install npm dependencies
+                    bat 'npm install'
+                }
+
+                stage('Run Node Script') {
+                    bat 'node index.js AyushGhagre direct_member FrontEnd'
+                }
+            }
         }
-        }
-    catch (Exception e) {
+    } catch (Exception e) {
         currentBuild.result = 'FAILURE'
-        echo "Encountered the exception"
-    } 
+        echo "Encountered the exception: ${e.getMessage()}"
+        throw e
+    }
 }
-
-
