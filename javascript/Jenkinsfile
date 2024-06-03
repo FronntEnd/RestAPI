@@ -25,5 +25,5 @@ node {
         currentBuild.result = 'FAILURE'
         echo "Encountered the exception"
     } 
-}
+
 
