@@ -9,7 +9,7 @@ node {
         dir('.\\javascript'){
         stage('Install Dependencies') {
             // Install npm dependencies
-            sh 'npm install'
+            bat 'npm install'
         }
         
         stage('Run Node Script') {
