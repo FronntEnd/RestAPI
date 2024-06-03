@@ -14,7 +14,10 @@ node {
         
         stage('Run Node Script') {
              withCredentials([string(credentialsId: 'git-pat', variable: 'GITHUB_TOKEN')]) {
-               bat "node index.js  AyushGhagre direct_member FrontEnd"
+             bat """
+                    set GITHUB_TOKEN=%GITHUB_TOKEN%
+                    node index.js AyushGhagre direct_member FrontEnd
+                    """
             }
             
         }
