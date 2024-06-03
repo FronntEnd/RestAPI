@@ -1,8 +1,25 @@
-node
-{
-  stage("checkout")
-  {
-    checkout scm
-  }
-    
+
+node {
+    try {
+         stage("checkout")
+         {
+           checkout scm
+         }
+        
+        dir('.\\javascript'){
+        stage('Install Dependencies') {
+            // Install npm dependencies
+            sh 'npm install'
+        }
+        
+        stage('Run Node Script') {
+            // Run the Node.js script with arguments
+            bat "node index.js  AyushGhagre direct_member FrontEnd"
+        }
+        }
+    } catch (Exception e) {
+        currentBuild.result = 'FAILURE'
+        echo "Encountered the exception"
+    } 
 }
+
