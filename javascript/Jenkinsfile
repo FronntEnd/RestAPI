@@ -13,8 +13,10 @@ node {
         }
         
         stage('Run Node Script') {
-            // Run the Node.js script with arguments
-            bat "node index.js  AyushGhagre direct_member FrontEnd"
+             withCredentials([string(credentialsId: 'git-pat', variable: 'GITHUB_TOKEN')]) {
+               bat "node index.js  AyushGhagre direct_member FrontEnd"
+            }
+            
         }
         }
     } catch (Exception e) {
