@@ -1,6 +1,6 @@
 node {
     try {
-        dir('C:\\') {
+        
             stage("Checkout") {
                 checkout scm
             }
@@ -15,10 +15,10 @@ node {
                     bat 'node index.js AyushGhagre direct_member FrontEnd'
                 }
             }
-        }
+        
     } catch (Exception e) {
         currentBuild.result = 'FAILURE'
         echo "Encountered the exception: ${e.getMessage()}"
-        throw e
+        
     }
 }
